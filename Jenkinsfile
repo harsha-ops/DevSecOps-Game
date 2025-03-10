@@ -11,7 +11,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git
+                git branch: 'master', url: 'https://github.com/harsha-ops/DevSecOps-Game.git'
             }
         }
 
