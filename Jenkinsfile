@@ -56,7 +56,7 @@ pipeline {
             steps {
                 sh '''
                     echo "Scanning Docker Image"
-                    trivy $registry/$dockerImage:$BUILD_NUMBER
+                    trivy $dockerImage:$BUILD_NUMBER
                 '''
 
             }
