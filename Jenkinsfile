@@ -92,6 +92,7 @@ pipeline {
                 GIT_REPO_NAME="DevSecOps-Game"
                 GIT_USER="harsha-ops"
                 GIT_EMAIL="harsha.abc@gmail.com"
+                GITHUB_TOKEN="credentails('github_token')"
             }
             steps {
                 sh '''
