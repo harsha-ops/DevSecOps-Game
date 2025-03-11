@@ -56,7 +56,7 @@ pipeline {
             steps {
                 sh '''
                     echo "Scanning Docker Image"
-                    trivy $dockerImage:$BUILD_NUMBER
+                    trivy image $dockerImage:$BUILD_NUMBER
                 '''
 
             }
@@ -85,6 +85,26 @@ pipeline {
                     docker push $registry/$dockerImage:$BUILD_NUMBER
                 '''
             }
+        }
+
+        stage('Update k8smanifest') {
+            environment {
+                GIT_REPO_NAME="DevSecOps-Game"
+                GIT_USER="harsha-ops"
+                GIT_EMAIL="harsha.abc@gmail.com"
+            }
+            steps {
+                sh '''
+                    git config --global user.email "$GIT_EMAIL"
+                    git config --global user.name "harsha"
+                    echo "Updating k8s manifest"
+                    sed -i "s|image: *|image: $dockerImage:$BUILD_NUMBER|g" kubernetes/deployment.yaml
+                    git add kubernetes/deployment.yaml
+                    git commit -m "Updated deployment.yaml"
+                    git push https://${GITHUB_TOKEN}@github.com/${GIT_USER}/${GIT_REPO_NAME}
+                '''
+            }
+            
         }
     }
 }
