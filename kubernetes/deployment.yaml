@@ -16,4 +16,4 @@ spec:
       - name: game-app
         image: harsha6798/devsecops-game:12
         ports:
-        - containerPort: 8080
+        - containerPort: 80
