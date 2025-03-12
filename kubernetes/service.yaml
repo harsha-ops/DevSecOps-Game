@@ -7,6 +7,6 @@ spec:
     app: game-app
   ports:
     - protocol: TCP
-      port: 33650
+      port: 80
       targetPort: 8080
   type: NodePort
