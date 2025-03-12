@@ -1,7 +1,7 @@
 # Work In Progress 
 
 
-# Deploy a simple game using DevSecOps CI/CD Pipeline.
+# Deploy a simple Tic-Tac-Toe game using DevSecOps CI/CD Pipeline.
 
 ![Screenshot 2025-03-04 at 7 16 48 PM](https://github.com/user-attachments/assets/7ed79f9c-9144-4870-accd-500085a15592)
 
@@ -9,7 +9,7 @@
 
 ## Features
 
-- 🎮 Fully functional Tic Tac Toe game
+- 🎮 Fully functional Tic-Tac-Toe game
 - 📊 Score tracking for X, O, and draws
 - 📜 Game history with timestamps
 - 🏆 Highlights winning combinations
