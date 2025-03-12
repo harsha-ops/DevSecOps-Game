@@ -99,7 +99,7 @@ pipeline {
                     git config --global user.email "$GIT_EMAIL"
                     git config --global user.name "harsha"
                     echo "Updating k8s manifest"
-                    sed -i "s|image: *|image: $dockerImage:$BUILD_NUMBER|g" kubernetes/deployment.yaml
+                    sed -i "s|image: .*|image: $dockerImage:$BUILD_NUMBER|g" kubernetes/deployment.yaml
                     git add kubernetes/deployment.yaml
                     git commit -m "Updated deployment.yaml"
                     git push https://${GITHUB_TOKEN}@github.com/${GIT_USER}/${GIT_REPO_NAME}
