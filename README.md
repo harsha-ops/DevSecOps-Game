@@ -1,7 +1,11 @@
 # Work In Progress 
 
 
-# Deploy a simple Tic-Tac-Toe game using DevSecOps CI/CD Pipeline.
+# Migrating a GitHub CI/CD Pipleine into the Jenkins CI/CD Pipeline.
+
+## Overview
+
+This project is focussed on migrating a Github CI/CD pipeline into the Jenkins CI/CD pipeline which deploys a simple Tic-Tac-Toe gaming application.
 
 ![Screenshot 2025-03-04 at 7 16 48 PM](https://github.com/user-attachments/assets/7ed79f9c-9144-4870-accd-500085a15592)
 
@@ -18,25 +22,13 @@
 
 ## Technologies Used
 
-- React 18
-- TypeScript
-- Tailwind CSS
-- Lucide React for icons
-
-## Project Structure
-
-```
-src/
-├── components/
-│   ├── Board.tsx       # Game board component
-│   ├── Square.tsx      # Individual square component
-│   ├── ScoreBoard.tsx  # Score tracking component
-│   └── GameHistory.tsx # Game history component
-├── utils/
-│   └── gameLogic.ts    # Game logic utilities
-├── App.tsx             # Main application component
-└── main.tsx           # Entry point
-```
+- **Frontend**: React, TypeScript, Tailwind CSS
+- **CI/CD**: GitHub Actions, Jenkins
+- **Containerization**: Docker
+- **Deployment**: Kubernetes
+- **Static Code Analysis**: ESLint
+- **Testing**: Vitest
+- **Vulnerability Scanning**: Trivy
 
 ## Game Logic
 
@@ -90,4 +82,31 @@ yarn build
 ```
 
 The build artifacts will be stored in the `dist/` directory.
+
+
+## CI/CD Pipeline
+
+### Jenkins Pipeline
+
+The Jenkins Pipeline includes the following stages:
+
+1. **Unit Testing**: Runs the test suite using Vitest.
+2. **Static Code Analysis**: Performs linting with ESLint.
+3. **Build**: Creates a production build of the application.
+4. **Docker Image Creation**: Builds a Docker image using a multi-stage Dockerfile.
+5. **Docker Image Scan**: Scans the image for vulnerabilities using Trivy.
+6. **Docker Image Push**: Pushes the image to GitHub Container Registry.
+7. **Kubernetes Deployment Update**: Updates the Kubernetes deployment file with the new image tag.
+
+## Deployment
+
+### Kubernetes
+
+### Set up Argo CD:
+1. Install Argo CD on the Kubernetes cluster.
+   ```bash
+   kubectl create namespace argocd
+   kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+   ```
+2. Set up a Git repository for Argo CD to track the changes in the Kubernetes manifests.
 
