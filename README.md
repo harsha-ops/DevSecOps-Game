@@ -22,7 +22,7 @@ This project focuses on migrating a GitHub CI/CD pipeline into a Jenkins CI/CD p
 ## Technologies Used  
 
 - **Frontend**: React, TypeScript, Tailwind CSS  
-- **CI/CD**: GitHub Actions, Jenkins  
+- **CI/CD**: Jenkins  
 - **Containerization**: Docker  
 - **Deployment**: Kubernetes  
 - **Static Code Analysis**: ESLint  
@@ -45,6 +45,8 @@ The game implements the following rules:
 
 - Node.js (v14 or higher)  
 - npm or yarn  
+- Docker  
+- Kubernetes cluster (v1.20 or higher)  
 
 ### Installation  
 
@@ -96,6 +98,8 @@ The Jenkins pipeline includes the following stages:
 6. **Docker Image Push**: Pushes the image to GitHub Container Registry.  
 7. **Kubernetes Deployment Update**: Updates the Kubernetes deployment file with the new image tag.  
 
+> **Note**: Ensure Jenkins has the necessary credentials configured for Docker access.  
+
 ## Deployment  
 
 ### Kubernetes  
@@ -108,5 +112,19 @@ The Jenkins pipeline includes the following stages:
    kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
    ```  
 
-2. Set up a Git repository for Argo CD to track changes in the Kubernetes manifests.
+2. Access the Argo CD UI:  
+   ```bash
+   kubectl port-forward svc/argocd-server -n argocd 8080:443
+   ```  
+   Open your browser and navigate to `https://localhost:8080`.  
+
+3. Log in to Argo CD:  
+   - Default username: `admin`  
+   - Retrieve the default password:  
+     ```bash
+     kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 -d
+     ```  
+
+4. Set up a Git repository for Argo CD to track changes in the Kubernetes manifests.  
+
 
