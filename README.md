@@ -127,4 +127,8 @@ The Jenkins pipeline includes the following stages:
 
 4. Set up a Git repository for Argo CD to track changes in the Kubernetes manifests.  
 
+5. Verify Deployment: Once the pipeline completes, confirm that the application has been successfully deployed to the Kubernetes cluster.
 
+6. Access the Application: Open a browser and access the application using the following URL: http://your-cluster-IP:NodePort
+
+Congratulations! You have successfully migrated the deployment of the Tic-Tac-Toe game from a GitHub CI/CD pipeline to a Jenkins CI/CD pipeline.
