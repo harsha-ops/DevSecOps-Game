@@ -1,4 +1,3 @@
-# Work In Progress  
 
 # Migrating a GitHub CI/CD Pipeline into a Jenkins CI/CD Pipeline  
 
